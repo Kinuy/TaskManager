@@ -104,11 +104,11 @@ target_link_libraries(TaskManagerExe
 )
 
 # Tests
-#option(BUILD_TESTS "Build tests" ON)
-#if(BUILD_TESTS)
-#    enable_testing()
-#    add_subdirectory(tests)
-#endif()
+option(BUILD_TESTS "Build tests" ON)
+if(BUILD_TESTS)
+   enable_testing()
+   add_subdirectory(tests)
+endif()
 
 # Installation
 if(APPLE)
