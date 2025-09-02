@@ -1,0 +1,109 @@
+# Qt specific
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+*.moc.cpp
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+Makefile*
+*build-*
+*.so
+*.so.*
+*.dylib
+*.dll
+*.a
+*.pdb
+
+# CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# Build directories
+build*/
+debug/
+release/
+Debug/
+Release/
+x64/
+x86/
+
+# IDE specific
+.vscode/
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+.idea/
+*.creator
+*.creator.*
+*.user
+*.pro.user.*
+
+# Qt Creator
+*.autosave
+*.orig
+
+# macOS
+.DS_Store
+*.app
+
+# Windows
+*.exe
+*.dll
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.manifest
+
+# Linux
+*.o
+*.so
+*.so.*
+
+# Coverage reports
+*.gcda
+*.gcno
+*.info
+coverage.html
+coverage/
+
+# Documentation
+doc/html/
+doc/latex/
+
+# Temporary files
+*~
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+
+# Package files
+*.tar.gz
+*.zip
+*.dmg
+*.deb
+*.rpm
+*.AppImage
+
+# Test results
+test-reports/
+*.xml
