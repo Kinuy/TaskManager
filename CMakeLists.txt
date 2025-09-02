@@ -51,6 +51,11 @@ add_executable(TaskManagerExe
     src/main.cpp
 )
 
+qt6_add_resources(TaskManagerExe "icons"
+    PREFIX "/"
+    FILES src/resources/images/icon.png
+)
+
 # Set output name for final executable
 set_target_properties(TaskManagerExe PROPERTIES
     OUTPUT_NAME "TaskManager"
@@ -76,13 +81,13 @@ qt6_add_qml_module(TaskManagerExe
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
         src/Main.qml
-        #src/qml/components/TaskItem.qml
-        #src/qml/components/CustomButton.qml
-        #src/qml/pages/TaskListPage.qml
-        #src/qml/dialogs/AddTaskDialog.qml
-        #src/qml/styles/AppTheme.qml
-        #RESOURCES  # ← Icon hier hinzufügen
-        #    src/resources/images/icon.png
+        src/qml/pages/TaskListPage.qml
+        src/qml/styles/AppTheme.qml
+        src/qml/dialogs/AddTaskDialog.qml
+        src/qml/components/CustomButton.qml
+        src/qml/components/TaskItem.qml
+        RESOURCES  # add icons here
+                src/resources/images/icon.png
 )
 
 # Link libraries

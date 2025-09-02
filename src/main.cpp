@@ -14,6 +14,12 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    QIcon appIcon;
+    appIcon.addFile(":/src/resources/images/icon.png", QSize(256, 256));
+    app.setWindowIcon(appIcon);
+    qDebug() << "Icon loaded:" << !appIcon.isNull();
+    qDebug() << "Available sizes:" << appIcon.availableSizes();
+
     app.setApplicationName("TaskManager");
     app.setApplicationVersion("1.0.0");
     app.setOrganizationName("Kinuy-Lab");
