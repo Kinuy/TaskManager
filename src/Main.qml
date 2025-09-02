@@ -1,8 +1,21 @@
 import QtQuick
+import QtQuick.Controls
 
-Window {
-    width: 640
-    height: 480
+import TaskManager 1.0
+
+ApplicationWindow {
+    id: window
+    width: 800
+    height: 600
     visible: true
-    title: qsTr("Hello World")
+
+    title: qsTr("Task Manager")
+
+    AppTheme {
+        id: theme
+    }
+
+    TaskListPage {
+        anchors.fill: parent
+    }
 }
