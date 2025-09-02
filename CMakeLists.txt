@@ -5,7 +5,6 @@ project(TaskManager VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 # Find Qt6
 find_package(Qt6 REQUIRED COMPONENTS
     Core
@@ -14,6 +13,11 @@ find_package(Qt6 REQUIRED COMPONENTS
     Test
     QuickTest
 )
+
+# Qt policies to suppress warnings
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0004 NEW)
+
 
 # Qt6 automatic tools
 set(CMAKE_AUTOMOC ON)
