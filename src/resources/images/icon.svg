@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1976D2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="check-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388E3C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="128" cy="128" r="120" fill="url(#bg-gradient)" stroke="#1565C0" stroke-width="4"/>
+  
+  <!-- Task List Icon Background -->
+  <rect x="64" y="48" width="128" height="160" rx="8" fill="#FFFFFF" opacity="0.9"/>
+  
+  <!-- Task List Lines -->
+  <rect x="80" y="72" width="96" height="3" rx="1.5" fill="#666666"/>
+  <rect x="80" y="88" width="80" height="3" rx="1.5" fill="#666666"/>
+  <rect x="80" y="104" width="88" height="3" rx="1.5" fill="#666666"/>
+  
+  <!-- Completed Task (with checkmark) -->
+  <circle cx="88" cy="128" r="8" fill="url(#check-gradient)"/>
+  <path d="M 84 128 L 87 131 L 92 125" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <rect x="104" y="126" width="72" height="3" rx="1.5" fill="#999999" opacity="0.6"/>
+  
+  <!-- Pending Tasks (checkboxes) -->
+  <rect x="80" y="144" width="16" height="16" rx="2" fill="none" stroke="#CCCCCC" stroke-width="2"/>
+  <rect x="104" y="150" width="72" height="3" rx="1.5" fill="#666666"/>
+  
+  <rect x="80" y="168" width="16" height="16" rx="2" fill="none" stroke="#CCCCCC" stroke-width="2"/>
+  <rect x="104" y="174" width="64" height="3" rx="1.5" fill="#666666"/>
+  
+  <!-- Priority Indicators -->
+  <rect x="180" y="71" width="4" height="6" rx="2" fill="#F44336"/> <!-- High -->
+  <rect x="180" y="87" width="4" height="6" rx="2" fill="#FF9800"/> <!-- Medium -->
+  <rect x="180" y="103" width="4" height="6" rx="2" fill="#4CAF50"/> <!-- Low -->
+  
+  <!-- Plus Icon for Add Task -->
+  <circle cx="200" cy="200" r="20" fill="#FF4081"/>
+  <rect x="195" y="190" width="10" height="20" rx="1" fill="#FFFFFF"/>
+  <rect x="190" y="195" width="20" height="10" rx="1" fill="#FFFFFF"/>
+</svg>
