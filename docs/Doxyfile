@@ -1,0 +1,148 @@
+# Project Information
+PROJECT_NAME           = "Task Manager"
+PROJECT_NUMBER         = "1.0.0"
+PROJECT_BRIEF          = "A Qt-based task management application"
+PROJECT_LOGO           = 
+
+# Input Configuration
+INPUT                  = ../src \
+                         mainpage.md
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.h \
+                         *.cpp \
+                         *.md
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */build/* \
+                         */debug/* \
+                         */release/* \
+                         */.git/* \
+                         */ui_*.h \
+                         */moc_*.cpp \
+                         */qrc_*.cpp
+
+# Qt-Specific Settings
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_PRIV_VIRTUAL   = NO
+EXTRACT_PACKAGE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = NO
+EXTRACT_ANON_NSPACES   = NO
+
+# Documentation Settings
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+HIDE_FRIEND_COMPOUNDS  = YES
+HIDE_IN_BODY_DOCS      = NO
+INTERNAL_DOCS          = NO
+CASE_SENSE_NAMES       = YES
+HIDE_SCOPE_NAMES       = NO
+HIDE_COMPOUND_REFERENCE = NO
+SHOW_INCLUDE_FILES     = YES
+SHOW_GROUPED_MEMB_INC  = NO
+FORCE_LOCAL_INCLUDES   = NO
+INLINE_INFO            = YES
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = NO
+SORT_MEMBERS_CTORS_1ST = NO
+SORT_GROUP_NAMES       = NO
+SORT_BY_SCOPE_NAME     = NO
+
+# Qt MOC and Signal/Slot Handling
+PREDEFINED             = Q_OBJECT \
+                         Q_PROPERTY(x)= \
+                         Q_INVOKABLE= \
+                         Q_SIGNAL= \
+                         Q_SLOT= \
+                         Q_SIGNALS=public \
+                         Q_SLOTS=public \
+                         Q_EMIT= \
+                         QML_ELEMENT= \
+                         Q_ENUM(x)= \
+                         signals=public \
+                         slots=public
+
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           = 
+INCLUDE_FILE_PATTERNS  = 
+
+# Output Configuration
+OUTPUT_DIRECTORY       = .
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = English
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+ABBREVIATE_BRIEF       = 
+ALWAYS_DETAILED_SEC    = NO
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = ../src
+STRIP_FROM_INC_PATH    = 
+
+# HTML Output
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            = 
+HTML_FOOTER            = 
+HTML_STYLESHEET        = 
+HTML_EXTRA_STYLESHEET  = 
+HTML_EXTRA_FILES       = 
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+HTML_TIMESTAMP         = NO
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = NO
+HTML_INDEX_NUM_ENTRIES = 100
+GENERATE_DOCSET        = NO
+GENERATE_HTMLHELP      = NO
+GENERATE_QHP           = NO
+GENERATE_ECLIPSEHELP   = NO
+DISABLE_INDEX          = NO
+GENERATE_TREEVIEW      = YES
+ENUM_VALUES_PER_LINE   = 4
+TREEVIEW_WIDTH         = 250
+EXT_LINKS_IN_WINDOW    = NO
+
+# LaTeX Output (disable if not needed)
+GENERATE_LATEX         = NO
+
+# Diagram Generation
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 0
+DOT_FONTNAME           = Helvetica
+DOT_FONTSIZE           = 10
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = NO
+UML_LIMIT_NUM_FIELDS   = 10
+TEMPLATE_RELATIONS     = NO
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = png
+INTERACTIVE_SVG        = NO
+DOT_PATH               = 
+DOTFILE_DIRS           = 
+MSCFILE_DIRS           = 
+DIAFILE_DIRS           = 
+
+# Search Engine
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+
+# Custom Commands for Qt
+ALIASES                += "qmlsignal=\par QML Signal:\n"
+ALIASES                += "qmlproperty=\par QML Property:\n"
+ALIASES                += "qmlmethod=\par QML Method:\n"
+ALIASES                += "threadSafe=\par Thread Safety:\nThis function is thread-safe."
+ALIASES                += "nonReentrant=\par Thread Safety:\nThis function is not reentrant."
+ALIASES                += "reentrant=\par Thread Safety:\nThis function is reentrant."
