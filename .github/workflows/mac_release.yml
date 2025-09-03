@@ -60,7 +60,7 @@ jobs:
       - name: (8) Zip build artifacts
         working-directory: ${{ runner.temp }}/build
         run:  |
-              zip -r ../qt-planets-build-macos.zip *.app *.dmg
+              zip -r ../task-manager-macos.zip *.app *.dmg
               
       - name: (9) Save build artifact
         uses: actions/upload-artifact@main
