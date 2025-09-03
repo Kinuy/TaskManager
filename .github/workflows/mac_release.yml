@@ -50,15 +50,15 @@ jobs:
         run: mkdir -p ${{ runner.temp }}/build
 
 
-      # - name: (5) Configure CMake
-      #   working-directory: ${{ runner.temp }}/build
-      #   run: |
-      #     cmake ${{ env.SOURCE_DIR }} \
-      #       -DCMAKE_BUILD_TYPE=Release \
-      #       -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)" \
-      #       -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
-      #       -DCMAKE_MACOSX_RPATH=ON \
-      #       -DCMAKE_INSTALL_RPATH="@executable_path/../Frameworks;$(brew --prefix qt@6)/lib"
+      - name: (5) Configure CMake
+        working-directory: ${{ runner.temp }}/build
+        run: |
+          cmake ${{ env.SOURCE_DIR }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)" \
+            -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
+            -DCMAKE_MACOSX_RPATH=ON \
+            -DCMAKE_INSTALL_RPATH="@executable_path/../Frameworks;$(brew --prefix qt@6)/lib"
 
       - name: (6) Build
         working-directory: ${{ runner.temp }}/build
