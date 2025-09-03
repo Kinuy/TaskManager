@@ -51,12 +51,24 @@ jobs:
         working-directory: ${{ runner.temp }}/build
         run: cmake --build . --parallel 2
 
-      - name: (7) Deploy Qt dependencies
+      - name: (7) Create DMG
         working-directory: ${{ runner.temp }}/build
-        run:  |
-              # Find the built executable (adjust path as needed for your CMake setup)
-              find . -name "*.app" -type d | head -1 | xargs -I {} macdeployqt {} -qmldir=${{ env.SOURCE_DIR }} -dmg
-              
+        run: |
+          # Find the app bundle
+          APP_PATH=$(find . -name "*.app" -type d | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app bundle found"
+            exit 1
+          fi
+          
+          echo "Found app: $APP_PATH"
+          
+          # Use macdeployqt with explicit paths
+          "$(brew --prefix qt@6)/bin/macdeployqt" "$APP_PATH" \
+            -qmldir="${{ env.SOURCE_DIR }}" \
+            -dmg \
+            -verbose=2
+
       - name: (8) Zip build artifacts
         working-directory: ${{ runner.temp }}/build
         run:  |
