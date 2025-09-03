@@ -45,7 +45,8 @@ jobs:
 
       - name: (5) Configure CMake
         working-directory: ${{ runner.temp }}/build
-        run: cmake ${{ env.SOURCE_DIR }} -DCMAKE_BUILD_TYPE=Release
+        run: 
+          cmake ${{ env.SOURCE_DIR }} -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="${{ runner.workspace }}/Qt/6.5.0/clang_64"
 
       - name: (5) Build
         working-directory: ${{ runner.temp }}/build
