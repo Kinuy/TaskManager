@@ -57,25 +57,24 @@ jobs:
       - name: (7) Create DMG
         working-directory: ${{ runner.temp }}/build
         run: |
+          # Find the app bundle
           APP_PATH=$(find . -name "*.app" -type d | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app bundle found"
+            exit 1
+          fi
+          
           echo "Found app: $APP_PATH"
           
-          QT_LIB_DIR="$(brew --prefix qt@6)/lib"
-          FRAMEWORKS_DIR="$APP_PATH/Contents/Frameworks"
+          # Get the directory containing the .app and the app name
+          APP_DIR=$(dirname "$APP_PATH")
+          APP_NAME=$(basename "$APP_PATH")
           
-          # Create Frameworks directory
-          mkdir -p "$FRAMEWORKS_DIR"
+          # cd into the directory containing the .app (as the advice suggests)
+          cd "$APP_DIR"
           
-          # Copy required Qt frameworks manually
-          for framework in QtCore QtGui QtQml QtQuick QtQuickControls2 QtQuickControls2Basic QtQmlMeta; do
-            if [ -d "$QT_LIB_DIR/$framework.framework" ]; then
-              echo "Copying $framework.framework"
-              cp -R "$QT_LIB_DIR/$framework.framework" "$FRAMEWORKS_DIR/"
-            fi
-          done
-          
-          # Now run macdeployqt
-          "$(brew --prefix qt@6)/bin/macdeployqt" "$APP_PATH" \
+          # Run macdeployqt from there with just the app name
+          "$(brew --prefix qt@6)/bin/macdeployqt" "$APP_NAME" \
             -qmldir="${{ env.SOURCE_DIR }}" \
             -dmg \
             -verbose=2
