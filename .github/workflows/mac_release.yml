@@ -60,20 +60,23 @@ jobs:
           APP_PATH=$(find . -name "*.app" -type d | head -1)
           echo "Found app: $APP_PATH"
           
-          # Find the main executable
-          EXECUTABLE=$(find "$APP_PATH/Contents/MacOS" -type f -perm +111 | head -1)
-          echo "Main executable: $EXECUTABLE"
+          QT_LIB_DIR="$(brew --prefix qt@6)/lib"
+          FRAMEWORKS_DIR="$APP_PATH/Contents/Frameworks"
           
-          # Fix rpath for the executable
-          if [ -n "$EXECUTABLE" ]; then
-            install_name_tool -add_rpath "$(brew --prefix qt@6)/lib" "$EXECUTABLE" || true
-            install_name_tool -add_rpath "@executable_path/../Frameworks" "$EXECUTABLE" || true
-          fi
+          # Create Frameworks directory
+          mkdir -p "$FRAMEWORKS_DIR"
           
-          # Deploy
+          # Copy required Qt frameworks manually
+          for framework in QtCore QtGui QtQml QtQuick QtQuickControls2 QtQuickControls2Basic QtQmlMeta; do
+            if [ -d "$QT_LIB_DIR/$framework.framework" ]; then
+              echo "Copying $framework.framework"
+              cp -R "$QT_LIB_DIR/$framework.framework" "$FRAMEWORKS_DIR/"
+            fi
+          done
+          
+          # Now run macdeployqt
           "$(brew --prefix qt@6)/bin/macdeployqt" "$APP_PATH" \
             -qmldir="${{ env.SOURCE_DIR }}" \
-            -libpath="$(brew --prefix qt@6)/lib" \
             -dmg \
             -verbose=2
 
