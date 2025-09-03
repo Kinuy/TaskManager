@@ -31,24 +31,34 @@ jobs:
         run: |
           git fetch --all --tags -f
 
-      - name: (3) Install Qt via Homebrew
-        run: |
-          brew install qt@6
-          echo "Qt6_DIR=$(brew --prefix qt@6)/lib/cmake/Qt6" >> $GITHUB_ENV
+      # - name: (3) Install Qt via Homebrew
+      #   run: |
+      #     brew install qt@6
+      #     echo "Qt6_DIR=$(brew --prefix qt@6)/lib/cmake/Qt6" >> $GITHUB_ENV
+
+      - name: (3) Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.9.0'
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
+          tools: 'tools_cmake'
 
       - name: (4) Create build directory
         run: mkdir -p ${{ runner.temp }}/build
 
 
-      - name: (5) Configure CMake
-        working-directory: ${{ runner.temp }}/build
-        run: |
-          cmake ${{ env.SOURCE_DIR }} \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)" \
-            -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
-            -DCMAKE_MACOSX_RPATH=ON \
-            -DCMAKE_INSTALL_RPATH="@executable_path/../Frameworks;$(brew --prefix qt@6)/lib"
+      # - name: (5) Configure CMake
+      #   working-directory: ${{ runner.temp }}/build
+      #   run: |
+      #     cmake ${{ env.SOURCE_DIR }} \
+      #       -DCMAKE_BUILD_TYPE=Release \
+      #       -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)" \
+      #       -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
+      #       -DCMAKE_MACOSX_RPATH=ON \
+      #       -DCMAKE_INSTALL_RPATH="@executable_path/../Frameworks;$(brew --prefix qt@6)/lib"
 
       - name: (6) Build
         working-directory: ${{ runner.temp }}/build
