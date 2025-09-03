@@ -73,7 +73,6 @@ jobs:
             echo "No .app bundle found"
             exit 1
           fi
-          
           echo "Found app: $APP_PATH"
           
           # Get the directory containing the .app and the app name
@@ -83,8 +82,8 @@ jobs:
           # cd into the directory containing the .app (as the advice suggests)
           cd "$APP_DIR"
           
-          # Run macdeployqt from there with just the app name
-          "$(brew --prefix qt@6)/bin/macdeployqt" "$APP_NAME" \
+          # Use macdeployqt from the aqt Qt installation instead of brew
+          "${{ env.Qt6_DIR }}/bin/macdeployqt" "$APP_NAME" \
             -qmldir="${{ env.SOURCE_DIR }}" \
             -dmg \
             -verbose=3
