@@ -54,18 +54,18 @@ jobs:
       - name: (7) Create DMG
         working-directory: ${{ runner.temp }}/build
         run: |
+          # Set environment variables
+          export DYLD_LIBRARY_PATH="$(brew --prefix qt@6)/lib:$DYLD_LIBRARY_PATH"
+          export QML2_IMPORT_PATH="$(brew --prefix qt@6)/qml"
+          
           # Find the app bundle
           APP_PATH=$(find . -name "*.app" -type d | head -1)
-          if [ -z "$APP_PATH" ]; then
-            echo "No .app bundle found"
-            exit 1
-          fi
-          
           echo "Found app: $APP_PATH"
           
-          # Use macdeployqt with explicit paths
+          # Deploy with environment variables set
           "$(brew --prefix qt@6)/bin/macdeployqt" "$APP_PATH" \
             -qmldir="${{ env.SOURCE_DIR }}" \
+            -libpath="$(brew --prefix qt@6)/lib" \
             -dmg \
             -verbose=2
 
