@@ -43,12 +43,14 @@ jobs:
       - name: (4) Create build directory
         run:  mkdir -p ${{ runner.temp }}/build
 
+      - name: (5) Configure CMake
+        working-directory: ${{ runner.temp }}/build
+        run: cmake ${{ env.SOURCE_DIR }} -DCMAKE_BUILD_TYPE=Release
+
       - name: (5) Build
         working-directory: ${{ runner.temp }}/build
-        run:
-         cmake ${{ env.SOURCE_DIR }} -DCMAKE_BUILD_TYPE=Release
-         cmake --build . --parallel 2
-              
+        run: cmake --build --parallel 2
+
       - name: (7) Deploy Qt dependencies
         working-directory: ${{ runner.temp }}/build
         run:  |
