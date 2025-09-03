@@ -49,7 +49,7 @@ jobs:
 
       - name: (6) Build
         working-directory: ${{ runner.temp }}/build
-        run: cmake --build --parallel 2
+        run: cmake --build . --parallel 2
 
       - name: (7) Deploy Qt dependencies
         working-directory: ${{ runner.temp }}/build
