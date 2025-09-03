@@ -18,7 +18,7 @@ env:
 
 jobs:
   build:
-    runs-on:  macos-latest
+    runs-on:  macos-12
 
     steps:
       - name: (1) Checkout repo
@@ -32,7 +32,7 @@ jobs:
           git fetch --all --tags -f
 
       - name: (3) Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v4
         with:
           version:      ${{ env.QT_VERSION }}
           host:         mac
