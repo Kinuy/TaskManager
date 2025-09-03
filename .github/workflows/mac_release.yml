@@ -56,6 +56,7 @@ jobs:
           cmake ${{ env.SOURCE_DIR }} \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH="${{ env.Qt6_DIR }}" \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
             -DCMAKE_MACOSX_RPATH=ON \
             -DCMAKE_INSTALL_RPATH="@executable_path/../Frameworks;${{ env.Qt6_DIR }}/lib"
@@ -81,6 +82,10 @@ jobs:
           
           # cd into the directory containing the .app (as the advice suggests)
           cd "$APP_DIR"
+
+          # Verify app architecture before deployment
+          echo "App architecture:"
+          lipo -info "$APP_NAME/Contents/MacOS"/*
           
           # Use macdeployqt from the aqt Qt installation instead of brew
           "${{ env.Qt6_DIR }}/bin/macdeployqt" "$APP_NAME" \
