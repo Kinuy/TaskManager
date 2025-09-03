@@ -36,14 +36,18 @@ jobs:
           brew install qt@6
           echo "Qt6_DIR=$(brew --prefix qt@6)/lib/cmake/Qt6" >> $GITHUB_ENV
 
-      - name: (4) Configure CMake
+      - name: (4) Create build directory
+        run: mkdir -p ${{ runner.temp }}/build
+
+
+      - name: (5) Configure CMake
         working-directory: ${{ runner.temp }}/build
         run: |
           cmake ${{ env.SOURCE_DIR }} \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)"
 
-      - name: (5) Build
+      - name: (6) Build
         working-directory: ${{ runner.temp }}/build
         run: cmake --build --parallel 2
 
