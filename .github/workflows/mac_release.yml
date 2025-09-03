@@ -31,22 +31,17 @@ jobs:
         run: |
           git fetch --all --tags -f
 
-      - name: (3) Install Qt
+      - name: (3) Install Qt via Homebrew
         run: |
-          python3 -m venv qt_env
-          source qt_env/bin/activate
-          python3 -m pip install aqtinstall
-          python3 -m aqt install-qt mac desktop 6.5.0 clang_64
-          echo "$(pwd)/6.5.0/clang_64/bin" >> $GITHUB_PATH
-          echo "Qt6_DIR=$(pwd)/6.5.0/clang_64" >> $GITHUB_ENV
+          brew install qt@6
+          echo "Qt6_DIR=$(brew --prefix qt@6)/lib/cmake/Qt6" >> $GITHUB_ENV
 
-      - name: (4) Create build directory
-        run:  mkdir -p ${{ runner.temp }}/build
-
-      - name: (5) Configure CMake
+      - name: (4) Configure CMake
         working-directory: ${{ runner.temp }}/build
-        run: 
-          cmake ${{ env.SOURCE_DIR }} -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="${{ runner.workspace }}/Qt/6.5.0/clang_64"
+        run: |
+          cmake ${{ env.SOURCE_DIR }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)"
 
       - name: (5) Build
         working-directory: ${{ runner.temp }}/build
