@@ -45,9 +45,9 @@ jobs:
 
       - name: (5) Build
         working-directory: ${{ runner.temp }}/build
-        run:  |
-              qmake -r ${{ env.SOURCE_DIR }}/planets-qml.pro
-              make -j2
+        run:
+         cmake ${{ env.SOURCE_DIR }} -DCMAKE_BUILD_TYPE=Release
+         cmake --build . --parallel 2
               
       - name: (7) Deploy Qt dependencies
         working-directory: ${{ runner.temp }}/build
