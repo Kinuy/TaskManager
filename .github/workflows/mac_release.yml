@@ -64,29 +64,49 @@ jobs:
         working-directory: ${{ runner.temp }}/build
         run: cmake --build . --parallel 2
 
-      - name: (7) Create DMG
+      # - name: (7) Create DMG
+      #   working-directory: ${{ runner.temp }}/build
+      #   run: |
+      #     # Find the app bundle
+      #     APP_PATH=$(find . -name "*.app" -type d | head -1)
+      #     if [ -z "$APP_PATH" ]; then
+      #       echo "No .app bundle found"
+      #       exit 1
+      #     fi
+      #     echo "Found app: $APP_PATH"
+          
+      #     # Get the directory containing the .app and the app name
+      #     APP_DIR=$(dirname "$APP_PATH")
+      #     APP_NAME=$(basename "$APP_PATH")
+          
+      #     # cd into the directory containing the .app (as the advice suggests)
+      #     cd "$APP_DIR"
+          
+      #     # Use macdeployqt from the aqt Qt installation instead of brew
+      #     "${{ env.Qt6_DIR }}/bin/macdeployqt" "$APP_NAME" \
+      #       -qmldir="${{ env.SOURCE_DIR }}" \
+      #       -dmg \
+      #       -verbose=3
+
+      - name: (7) Create DMG - Alternative approach
         working-directory: ${{ runner.temp }}/build
         run: |
           # Find the app bundle
           APP_PATH=$(find . -name "*.app" -type d | head -1)
-          if [ -z "$APP_PATH" ]; then
-            echo "No .app bundle found"
-            exit 1
-          fi
-          echo "Found app: $APP_PATH"
-          
-          # Get the directory containing the .app and the app name
-          APP_DIR=$(dirname "$APP_PATH")
           APP_NAME=$(basename "$APP_PATH")
           
-          # cd into the directory containing the .app (as the advice suggests)
-          cd "$APP_DIR"
+          # Move to shorter path to avoid long path issues
+          cp -R "$APP_PATH" /tmp/
+          cd /tmp
           
-          # Use macdeployqt from the aqt Qt installation instead of brew
+          # Try macdeployqt from shorter path
           "${{ env.Qt6_DIR }}/bin/macdeployqt" "$APP_NAME" \
             -qmldir="${{ env.SOURCE_DIR }}" \
             -dmg \
-            -verbose=3
+            -verbose=1
+          
+          # Move DMG back to build directory
+          mv *.dmg "${{ runner.temp }}/build/" || echo "No DMG created"
 
       - name: (8) Zip build artifacts
         working-directory: ${{ runner.temp }}/build
